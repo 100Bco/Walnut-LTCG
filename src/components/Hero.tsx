@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, MapPin, Phone, ShieldCheck } from 'lucide-react';
+import { ArrowRight, MapPin, Phone } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const heroImages = [
@@ -21,9 +21,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100vh-5rem)] lg:min-h-[85vh] lg:h-[85vh] bg-lt-cream flex flex-col lg:flex-row border-b border-lt-line">
+    <section className="relative min-h-[calc(100dvh-5rem)] lg:min-h-0 lg:h-auto lg:flex-1 bg-lt-cream flex flex-col lg:flex-row border-b border-lt-line">
       {/* Left Content */}
-      <div className="w-full lg:w-1/2 relative flex items-center justify-center px-6 py-14 sm:px-8 lg:px-16 xl:px-24 z-10">
+      <div className="w-full lg:w-1/2 relative flex items-center justify-center px-6 py-12 sm:px-8 lg:px-16 xl:px-24 z-10">
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,23 +31,23 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-xl w-full relative z-10"
         >
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-4 mb-6">
             <span className="w-12 h-[2px] bg-lt-auburn block"></span>
             <span className="text-lt-onyx font-bold text-[11px] tracking-[0.3em] uppercase">
               Premium Executive Suites
             </span>
           </div>
 
-          <h1 className="lt-display text-lt-onyx mb-8">
+          <h1 className="lt-display text-lt-onyx mb-6">
             Built For <br />
             <span className="text-lt-auburn">Excellence.</span>
           </h1>
 
-          <p className="lt-lead mb-10 max-w-md">
+          <p className="lt-lead mb-8 max-w-md">
             Private executive suites, team offices, and on-demand meeting rooms — secured, staffed, and ready to occupy immediately.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center mb-14">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center mb-10">
             <a href="#contact" className="lt-btn-primary group">
               Schedule a Tour
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -57,7 +57,7 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 gap-y-4 gap-x-8 text-[11px] text-lt-onyx/60 font-semibold tracking-widest uppercase">
+          <div className="flex flex-wrap gap-x-8 gap-y-4 text-[11px] text-lt-onyx/60 font-semibold tracking-widest uppercase">
             <div className="flex items-center gap-3">
               <MapPin size={14} className="text-lt-auburn" />
               Austin, TX
@@ -65,10 +65,6 @@ export default function Hero() {
             <div className="flex items-center gap-3">
               <Phone size={14} className="text-lt-auburn" />
               (512) 490-6666
-            </div>
-            <div className="flex items-center gap-3 col-span-2 mt-2">
-              <ShieldCheck size={14} className="text-lt-auburn" />
-              Secured 24/7 Access
             </div>
           </div>
         </motion.div>
