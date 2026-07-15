@@ -34,7 +34,7 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[13px] font-medium uppercase tracking-widest text-lt-onyx transition-colors hover:text-lt-auburn"
+                className="text-[14px] font-medium tracking-normal text-lt-onyx transition-colors hover:text-lt-auburn"
               >
                 {link.label}
               </a>
@@ -68,7 +68,7 @@ export default function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block rounded-md px-3 py-3 text-base font-semibold text-lt-onyx hover:bg-lt-cream"
+                  className="block px-3 py-3 text-base font-semibold text-lt-onyx hover:bg-lt-cream"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}

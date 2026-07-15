@@ -73,7 +73,7 @@ export default function Hero() {
       </div>
 
       {/* Right Image Split */}
-      <div className="w-full lg:w-1/2 relative h-[40vh] lg:h-full overflow-hidden bg-lt-onyx">
+      <div className="lt-bracket w-full lg:w-1/2 relative h-[40vh] lg:h-full overflow-hidden bg-lt-onyx">
         <div className="absolute inset-0 bg-lt-onyx/20 z-10"></div>
         <AnimatePresence mode="popLayout">
           <motion.img 

@@ -56,7 +56,7 @@ export default function BookRoom() {
   };
 
   const inputClass =
-    'w-full px-4 py-3 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium text-lt-onyx focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all';
+    'w-full px-4 py-3 bg-lt-cream border border-lt-line text-sm font-medium text-lt-onyx focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all';
 
   return (
     <section id="book" className="py-16 lg:py-20 bg-lt-onyx text-lt-white relative overflow-hidden border-t border-lt-line">
@@ -84,17 +84,17 @@ export default function BookRoom() {
           </div>
 
           {/* Right — reservation form */}
-          <div className="bg-lt-white text-lt-onyx p-6 sm:p-8 rounded-sm border-t-4 border-lt-auburn shadow-2xl">
+          <div className="bg-lt-white text-lt-onyx p-6 sm:p-8 border-t-4 border-lt-auburn shadow-xl">
             <h3 className="font-title font-bold text-xl text-lt-onyx mb-1 tracking-tight">Quick Reservation</h3>
             <p className="text-[13px] text-lt-muted mb-6">Pay securely — powered by Stripe.</p>
 
             {notice === 'success' && (
-              <div className="mb-5 rounded-sm border border-lt-auburn/30 bg-lt-auburn/5 px-4 py-3 text-[13px] text-lt-onyx">
+              <div className="mb-5 border border-lt-auburn/30 bg-lt-auburn/5 px-4 py-3 text-[13px] text-lt-onyx">
                 Payment received — your reservation is confirmed. Check your email for details.
               </div>
             )}
             {notice === 'cancelled' && (
-              <div className="mb-5 rounded-sm border border-lt-line bg-lt-cream px-4 py-3 text-[13px] text-lt-muted">
+              <div className="mb-5 border border-lt-line bg-lt-cream px-4 py-3 text-[13px] text-lt-muted">
                 Checkout was cancelled. Your reservation was not charged.
               </div>
             )}
