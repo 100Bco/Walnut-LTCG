@@ -31,10 +31,12 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-xl w-full relative z-10"
         >
-          <div className="flex items-center gap-4 mb-6">
-            <span className="w-12 h-[2px] bg-lt-auburn block"></span>
-            <span className="text-lt-onyx font-semibold text-[12px] tracking-[0.16em] uppercase">
-              North Austin · Executive Suites
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <span className="bg-lt-auburn px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-lt-white">
+              For Lease
+            </span>
+            <span className="text-lt-onyx font-semibold text-[12px] tracking-[0.14em] uppercase">
+              Walnut Park Crossing · North Austin
             </span>
           </div>
 

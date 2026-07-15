@@ -1,15 +1,84 @@
 import { Building2, DoorOpen, Coffee, Sparkles, Car, Lock, Video, Wifi, Mail } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
-const amenities = [
-  { icon: Building2, title: 'Conference Rooms', desc: 'Multiple sizes, A/V equipped, bookable in real time.' },
-  { icon: DoorOpen, title: 'Private Offices', desc: 'Furnished, lockable, and ready for individuals or teams.' },
-  { icon: Coffee, title: 'Stocked Kitchen', desc: 'Coffee, tea, filtered water, and a clean, modern break area.' },
-  { icon: Sparkles, title: 'Modern Restrooms', desc: 'Clean, well-maintained facilities throughout the building.' },
-  { icon: Car, title: 'On-Site Parking', desc: 'Ample parking for tenants and visiting clients.' },
-  { icon: Lock, title: 'Gated Property', desc: 'Controlled-access entry. Your space stays your space.' },
-  { icon: Video, title: 'Cameras & Alarms', desc: '24/7 monitored security throughout the property.' },
-  { icon: Wifi, title: 'Business WiFi', desc: 'Fast, secure, business-class internet on every floor.' },
-  { icon: Mail, title: 'Business Address', desc: 'Use Walnut Park Crossing as your professional mailing address.' },
+type Variant = 'image' | 'card' | 'dark' | 'auburn';
+
+interface Amenity {
+  title: string;
+  desc: string;
+  icon: LucideIcon;
+  variant: Variant;
+  img?: string;
+  span: string;
+}
+
+const amenities: Amenity[] = [
+  {
+    title: 'Conference Rooms',
+    desc: 'Multiple sizes, A/V equipped, bookable in real time.',
+    icon: Building2,
+    variant: 'image',
+    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80',
+    span: 'col-span-2 lg:row-span-2',
+  },
+  {
+    title: 'Private Offices',
+    desc: 'Furnished, lockable, and ready for individuals or teams.',
+    icon: DoorOpen,
+    variant: 'image',
+    img: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&q=80',
+    span: 'col-span-1 lg:row-span-2',
+  },
+  {
+    title: 'Stocked Kitchen',
+    desc: 'Coffee, tea, filtered water, and a clean, modern break area.',
+    icon: Coffee,
+    variant: 'card',
+    span: 'col-span-1',
+  },
+  {
+    title: 'Modern Restrooms',
+    desc: 'Clean, well-maintained facilities throughout the building.',
+    icon: Sparkles,
+    variant: 'card',
+    span: 'col-span-1',
+  },
+  {
+    title: 'On-Site Parking',
+    desc: 'Ample parking for tenants and visiting clients.',
+    icon: Car,
+    variant: 'image',
+    img: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&q=80',
+    span: 'col-span-2',
+  },
+  {
+    title: 'Gated Property',
+    desc: 'Controlled-access entry. Your space stays your space.',
+    icon: Lock,
+    variant: 'card',
+    span: 'col-span-1',
+  },
+  {
+    title: 'Cameras & Alarms',
+    desc: '24/7 monitored security throughout the property.',
+    icon: Video,
+    variant: 'dark',
+    span: 'col-span-1',
+  },
+  {
+    title: 'Business WiFi',
+    desc: 'Fast, secure, business-class internet on every floor.',
+    icon: Wifi,
+    variant: 'auburn',
+    span: 'col-span-2',
+  },
+  {
+    title: 'Business Address',
+    desc: 'Use Walnut Park Crossing as your professional mailing address.',
+    icon: Mail,
+    variant: 'card',
+    span: 'col-span-2',
+  },
 ];
 
 export default function Amenities() {
@@ -28,20 +97,66 @@ export default function Amenities() {
           </p>
         </div>
 
-        {/* Grid — 9 amenities */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {amenities.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="group bg-lt-white border border-lt-line p-6 transition-colors hover:border-lt-auburn"
-            >
-              <div className="mb-4 flex h-11 w-11 items-center justify-center border-l-2 border-lt-auburn bg-lt-auburn/10 text-lt-auburn">
-                <Icon size={20} strokeWidth={1.75} />
+        {/* Bento grid — 9 amenities */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 auto-rows-[150px] md:auto-rows-[165px] lg:auto-rows-[185px] grid-flow-row-dense">
+          {amenities.map(({ title, desc, icon: Icon, variant, img, span }) => {
+            if (variant === 'image') {
+              return (
+                <div
+                  key={title}
+                  className={`group relative overflow-hidden bg-lt-onyx flex flex-col justify-end p-5 lg:p-7 ${span}`}
+                >
+                  {img && (
+                    <img
+                      src={img}
+                      alt={title}
+                      className="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                  <div className="relative z-10 text-lt-white">
+                    <Icon size={26} className="mb-3 text-lt-cream" strokeWidth={1.5} />
+                    <h3 className="font-title text-xl lg:text-2xl font-bold mb-1.5 tracking-tight">{title}</h3>
+                    <p className="text-white/80 font-light text-[13px] leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              );
+            }
+
+            if (variant === 'auburn') {
+              return (
+                <div key={title} className={`bg-lt-auburn text-lt-white p-5 lg:p-6 flex flex-col justify-center ${span}`}>
+                  <Icon size={24} className="mb-3 text-lt-cream" strokeWidth={1.5} />
+                  <h3 className="font-title text-lg lg:text-xl font-bold mb-1 tracking-tight">{title}</h3>
+                  <p className="text-white/85 font-light text-[13px] leading-relaxed">{desc}</p>
+                </div>
+              );
+            }
+
+            if (variant === 'dark') {
+              return (
+                <div key={title} className={`bg-lt-onyx text-lt-white p-5 lg:p-6 flex flex-col justify-center ${span}`}>
+                  <Icon size={24} className="mb-3 text-lt-cream" strokeWidth={1.5} />
+                  <h3 className="font-title text-lg font-bold mb-1 tracking-tight">{title}</h3>
+                  <p className="text-white/70 font-light text-[13px] leading-relaxed">{desc}</p>
+                </div>
+              );
+            }
+
+            // card
+            return (
+              <div
+                key={title}
+                className={`group bg-lt-white border border-lt-line p-5 lg:p-6 flex flex-col justify-center transition-colors hover:border-lt-auburn ${span}`}
+              >
+                <div className="mb-3 flex h-10 w-10 items-center justify-center border-l-2 border-lt-auburn bg-lt-auburn/10 text-lt-auburn">
+                  <Icon size={20} strokeWidth={1.75} />
+                </div>
+                <h3 className="font-title text-lg font-bold text-lt-onyx mb-1 tracking-tight">{title}</h3>
+                <p className="text-[13px] text-lt-onyx/65 leading-relaxed">{desc}</p>
               </div>
-              <h3 className="font-title text-lg font-bold text-lt-onyx mb-1.5 tracking-tight">{title}</h3>
-              <p className="text-[13px] text-lt-onyx/65 leading-relaxed">{desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

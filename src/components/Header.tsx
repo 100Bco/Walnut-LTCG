@@ -14,22 +14,6 @@ export default function Header() {
   ];
 
   return (
-    <>
-    {/* Property brand bar */}
-    <div className="bg-lt-onyx text-lt-white">
-      <div className="lt-container flex flex-wrap items-center gap-x-4 gap-y-1.5 py-2.5">
-        <span className="text-[15px] font-bold tracking-wide">
-          <span className="text-lt-auburn">FOR</span> LEASE
-        </span>
-        <span className="bg-lt-auburn px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-lt-white">
-          Walnut Park Crossing
-        </span>
-        <span className="text-[13px] text-lt-white/70">
-          12516 Walnut Park Crossing, Austin, TX 78753
-        </span>
-      </div>
-    </div>
-
     <header className="sticky top-0 z-50 border-b border-lt-line bg-lt-white/90 backdrop-blur-md">
       <div className="lt-container">
         <div className="flex h-20 items-center justify-between">
@@ -104,6 +88,5 @@ export default function Header() {
         </div>
       )}
     </header>
-    </>
   );
 }
