@@ -21,7 +21,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100dvh-5rem)] lg:min-h-0 lg:h-auto lg:flex-1 bg-lt-cream flex flex-col lg:flex-row border-b border-lt-line">
+    <section className="relative min-h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-5rem)] bg-lt-cream flex flex-col lg:flex-row border-b border-lt-line">
       {/* Left Content */}
       <div className="w-full lg:w-1/2 relative flex items-center justify-center px-6 py-12 sm:px-8 lg:px-16 xl:px-24 z-10">
 

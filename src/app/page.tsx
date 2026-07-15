@@ -26,11 +26,8 @@ export default function Home() {
     <>
       <Header />
       <main>
-        {/* Hero + stats bar are locked to a single viewport (below the header) */}
-        <div className="lg:flex lg:h-[calc(100dvh-5rem-1px)] lg:flex-col lg:overflow-hidden">
-          <Hero />
-          <Stats />
-        </div>
+        <Hero />
+        <Stats />
         <Suites />
         <Amenities />
         <Terms />
