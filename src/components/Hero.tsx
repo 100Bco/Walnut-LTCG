@@ -19,10 +19,10 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen lg:min-h-[85vh] lg:h-[85vh] bg-lt-cream flex flex-col lg:flex-row border-b border-lt-line pt-20 lg:pt-0">
+    <section className="relative min-h-[calc(100vh-5rem)] lg:min-h-[85vh] lg:h-[85vh] bg-lt-cream flex flex-col lg:flex-row border-b border-lt-line">
       {/* Left Content */}
-      <div className="w-full lg:w-1/2 relative flex items-center justify-center p-8 lg:p-16 xl:p-24 z-10">
-        
+      <div className="w-full lg:w-1/2 relative flex items-center justify-center px-6 py-14 sm:px-8 lg:px-16 xl:px-24 z-10">
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,26 +31,26 @@ export default function Hero() {
         >
           <div className="flex items-center gap-4 mb-8">
             <span className="w-12 h-[2px] bg-lt-auburn block"></span>
-            <span className="text-lt-onyx font-bold text-[10px] tracking-[0.3em] uppercase">
+            <span className="text-lt-onyx font-bold text-[11px] tracking-[0.3em] uppercase">
               Premium Executive Suites
             </span>
           </div>
-          
-          <h1 className="text-5xl sm:text-6xl lg:text-[72px] xl:text-[84px] leading-[1.02] mb-8 font-title font-extrabold tracking-tight text-lt-onyx uppercase">
+
+          <h1 className="lt-display text-lt-onyx mb-8">
             Built For <br />
             <span className="text-lt-auburn">Excellence.</span>
           </h1>
-          
-          <p className="text-lg text-lt-onyx/70 mb-12 font-light leading-relaxed max-w-md">
+
+          <p className="lt-lead mb-10 max-w-md">
             Private executive suites, team offices, and on-demand meeting rooms — secured, staffed, and ready to occupy immediately.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center mb-16">
-            <a href="#contact" className="inline-flex items-center justify-center bg-lt-onyx text-lt-white px-8 py-4 font-medium tracking-widest text-[11px] uppercase hover:bg-lt-auburn transition-all shadow-xl group">
+
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center mb-14">
+            <a href="#contact" className="lt-btn-primary group">
               Schedule a Tour
-              <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#book" className="inline-flex items-center justify-center bg-transparent border border-lt-onyx/20 text-lt-onyx px-8 py-4 font-medium tracking-widest text-[11px] uppercase hover:border-lt-onyx transition-all">
+            <a href="#book" className="lt-btn-outline">
               Reserve a Space
             </a>
           </div>

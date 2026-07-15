@@ -4,15 +4,28 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-title: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  
+
+  /* Brand palette — aligned to the LT Commercial Group brand guide */
   --color-lt-onyx: #1A1A1A;
   --color-lt-onyx-deep: #0D0D0D;
-  --color-lt-auburn: #9B1B22;
-  --color-lt-auburn-dark: #7A141A;
+  --color-lt-auburn: #AA2129;
+  --color-lt-auburn-dark: #86171D;
   --color-lt-white: #FFFFFF;
   --color-lt-cream: #F9F8F6;
-  --color-lt-line: #E5E5E5;
+  --color-lt-line: #E7E4E0;
   --color-lt-muted: #737373;
+
+  /* Shared type scale (kept in one place so sizing stays consistent) */
+  --text-eyebrow: 0.6875rem;   /* 11px */
+  --text-lead: 1.125rem;       /* 18px */
+}
+
+/* ---------------------------------------------------------------- Base */
+html {
+  scroll-behavior: smooth;
+  /* keep anchored sections clear of the sticky header */
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -20,12 +33,98 @@ body {
   color: var(--color-lt-onyx);
   background-color: var(--color-lt-cream);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-title);
+  text-wrap: balance;
 }
 
-.font-title {
-  font-family: var(--font-title);
+p { text-wrap: pretty; }
+
+.font-title { font-family: var(--font-title); }
+
+/* Consistent, visible focus ring for keyboard users across the site */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-lt-auburn);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ------------------------------------------------- Design-system layer
+   Shared building blocks so spacing, padding, headings and buttons stay
+   synchronized across every section of the site. */
+@layer components {
+
+  /* Horizontal rhythm — one container width + gutters everywhere */
+  .lt-container {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Vertical rhythm — one section padding scale everywhere */
+  .lt-section {
+    @apply py-20 lg:py-28;
+  }
+
+  /* Section eyebrow label (the small auburn kicker above headings) */
+  .lt-eyebrow {
+    @apply mb-6 inline-block border-b-2 border-lt-auburn pb-3
+           text-[color:var(--color-lt-auburn)] font-bold uppercase;
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.3em;
+  }
+
+  /* Standard section heading (H2) — one type ramp for all sections */
+  .lt-title {
+    @apply font-title font-extrabold uppercase leading-[1.05] tracking-tight
+           text-[2rem] sm:text-[2.5rem] lg:text-[3.25rem];
+  }
+
+  /* Oversized display heading (hero / final CTA) */
+  .lt-display {
+    @apply font-title font-extrabold uppercase leading-[0.98] tracking-tight
+           text-[2.75rem] sm:text-6xl lg:text-[5.25rem];
+  }
+
+  /* Intro paragraph under a heading */
+  .lt-lead {
+    @apply max-w-2xl font-light leading-relaxed text-lt-onyx/70;
+    font-size: var(--text-lead);
+  }
+
+  /* Buttons — one shape language, three intents.
+     Each variant is self-contained (Tailwind v4 @apply cannot chain
+     custom component classes), so the base shape is repeated. */
+  .lt-btn {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4
+           text-[11px] font-bold uppercase tracking-widest transition-all duration-300;
+  }
+  .lt-btn-primary {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4
+           text-[11px] font-bold uppercase tracking-widest transition-all duration-300
+           bg-lt-onyx text-lt-white shadow-lg hover:bg-lt-auburn hover:shadow-xl;
+  }
+  .lt-btn-outline {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4
+           text-[11px] font-bold uppercase tracking-widest transition-all duration-300
+           border border-lt-onyx/20 text-lt-onyx hover:border-lt-onyx hover:bg-lt-onyx hover:text-lt-white;
+  }
+  .lt-btn-light {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4
+           text-[11px] font-bold uppercase tracking-widest transition-all duration-300
+           bg-lt-white text-lt-auburn shadow-xl hover:bg-lt-cream;
+  }
 }

@@ -1,17 +1,21 @@
 export default function Footer() {
   return (
-    <footer className="bg-lt-onyx-deep text-lt-white/60 pt-16 pb-8 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <footer className="bg-lt-onyx-deep text-lt-white/60 pt-20 pb-8 overflow-hidden">
+      <div className="lt-container">
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-12">
           <div className="lg:col-span-5 pr-4">
-            <div className="flex items-center space-x-3 mb-8">
-              <div className="flex bg-lt-auburn text-lt-white font-bold p-1 w-10 h-10 items-center justify-center rounded-sm">
-                <span className="text-2xl leading-none">L</span>
-              </div>
+            <div className="flex items-center gap-3 mb-8">
+              <img
+                src="/ltcg-icon-light.png"
+                alt="LT Commercial Group"
+                className="h-12 w-auto"
+                width={125}
+                height={173}
+              />
               <div className="flex flex-col justify-center">
                 <span className="text-lt-white font-title text-xl leading-tight font-extrabold tracking-tight">LT COMMERCIAL GROUP</span>
-                <span className="text-lt-auburn text-[9px] font-bold tracking-[0.2em] uppercase mt-0.5">Commercial Real Estate</span>
+                <span className="text-lt-auburn text-[9px] font-bold tracking-[0.2em] uppercase mt-1">Commercial Real Estate</span>
               </div>
             </div>
             
