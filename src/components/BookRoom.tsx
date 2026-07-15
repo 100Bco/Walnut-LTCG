@@ -1,340 +1,199 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Calendar, Clock, CreditCard, CheckCircle2, ChevronLeft, Users, Wifi, ShieldCheck, Monitor } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useEffect, useMemo, useState } from 'react';
+import { Check, ShieldCheck, Loader2 } from 'lucide-react';
+import { bookingSpaces } from '@/lib/site';
+
+const START_TIMES = ['09:00 AM', '10:00 AM', '11:00 AM', '01:00 PM', '02:00 PM', '03:00 PM'];
 
 export default function BookRoom() {
-  const [step, setStep] = useState(0);
-  const [space, setSpace] = useState('meeting');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('09:00');
-  const [duration, setDuration] = useState(1);
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    spaceId: bookingSpaces[0].id as string,
+    date: '',
+    time: START_TIMES[0],
+    duration: 1,
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [message, setMessage] = useState<string | null>(null);
+  const [notice, setNotice] = useState<'success' | 'cancelled' | null>(null);
 
-  const spacesList = [
-    {
-      id: 'desk',
-      title: 'Desks',
-      priceStr: 'starting at $15/day',
-      price: 15,
-      unit: 'day',
-      capacity: '1 Person',
-      desc: 'Single day rates for desks and shared spaces set by our partner locations to ensure the best available price.',
-      img: 'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?q=80&w=1000&auto=format&fit=crop',
-      btn: 'Find a desk'
-    },
-    {
-      id: 'meeting',
-      title: 'Meeting Rooms',
-      priceStr: 'Starting at $5/hr',
-      price: 5,
-      unit: 'hour',
-      capacity: 'Up to 12',
-      desc: 'Hourly and daily rates for meeting rooms, conference rooms, event spaces, training rooms, phone booths and more.',
-      img: 'https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format&fit=crop',
-      btn: 'Find a meeting room'
-    },
-    {
-      id: 'office',
-      title: 'Offices',
-      priceStr: 'starting at $50/day',
-      price: 50,
-      unit: 'day',
-      capacity: '1-4 People',
-      desc: 'Short- and longer-term private office options with private amenities for full- and partial day use.',
-      img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1000&auto=format&fit=crop',
-      btn: 'Find an office'
-    }
-  ];
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const b = params.get('booking');
+    if (b === 'success' || b === 'cancelled') setNotice(b);
+  }, []);
 
-  const currentSpace = spacesList.find(s => s.id === space) || spacesList[1];
-  const subtotal = currentSpace.price * duration;
-  const taxes = subtotal * 0.0825; // Texas tax rate approx
-  const total = subtotal + taxes;
+  const space = bookingSpaces.find((s) => s.id === form.spaceId) ?? bookingSpaces[0];
+  const total = useMemo(() => space.hourly * form.duration, [space, form.duration]);
 
-  const handleNext = (e: React.FormEvent) => {
+  const update = (key: keyof typeof form, value: string | number) =>
+    setForm((f) => ({ ...f, [key]: value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (step === 1) setStep(2);
-    else if (step === 2) {
-      setIsProcessing(true);
-      setTimeout(() => {
-        setIsProcessing(false);
-        setStep(3);
-      }, 2000);
+    setStatus('loading');
+    setMessage(null);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        window.location.href = data.url as string;
+        return;
+      }
+      setStatus('error');
+      setMessage(data.error || 'Something went wrong. Please try again.');
+    } catch {
+      setStatus('error');
+      setMessage('Network error. Please try again.');
     }
   };
 
-  const selectSpace = (id: string) => {
-    setSpace(id);
-    setStep(1);
-  };
+  const inputClass =
+    'w-full px-4 py-3 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium text-lt-onyx focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all';
 
   return (
-    <section id="book" className="py-12 lg:py-16 bg-lt-white relative overflow-hidden border-t border-lt-line">
+    <section id="book" className="py-16 lg:py-20 bg-lt-onyx text-lt-white relative overflow-hidden border-t border-lt-line">
       <div className="lt-container relative z-10">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
 
-        {step === 0 && (
+          {/* Left — pitch */}
           <div>
-            <div className="text-center mb-8 lg:mb-10 max-w-5xl mx-auto">
-              <div className="lt-eyebrow">Real-Time Reservations</div>
-              <h2 className="lt-title mb-4">
-                NO HIDDEN FEES. NO COMMITMENT. <br className="hidden sm:block" />
-                <span className="text-lt-onyx/40">NO MEMBERSHIPS.</span>
-              </h2>
-              <p className="lt-lead mx-auto text-center">
-                Select your space, choose a date and time, and check out. It’s that simple.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {spacesList.map((s) => (
-                <div key={s.id} className="flex flex-col text-center group border border-lt-line p-4 pb-6 hover:-translate-y-2 transition-all duration-500 shadow-sm hover:shadow-xl bg-lt-cream">
-                  <div className="aspect-[16/10] mb-5 overflow-hidden bg-lt-line relative">
-                    <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <h3 className="font-title font-bold text-2xl text-lt-onyx mb-2 tracking-tight">{s.title}</h3>
-                  <p className="text-[13px] text-lt-onyx/70 font-light mb-5 flex-1 px-4 leading-relaxed">{s.desc}</p>
-                  <div className="flex flex-col items-center">
-                    <button
-                      onClick={() => selectSpace(s.id)}
-                      className="lt-btn-primary mb-3 w-full max-w-[240px]"
-                    >
-                      {s.btn}
-                    </button>
-                    <span className="text-lt-onyx/50 font-bold text-[11px] tracking-widest uppercase">{s.priceStr}</span>
-                  </div>
-                </div>
+            <div className="lt-eyebrow border-lt-white/30 text-lt-white/90">Real-Time Reservations</div>
+            <h2 className="lt-title mb-4 text-lt-white">Need a room — today or next Tuesday?</h2>
+            <p className="text-lg text-lt-white/75 font-light leading-relaxed mb-8 max-w-md">
+              Reserve a meeting room or day office in real time, pay securely, and you&apos;re set.
+              Show up with your laptop and get to work.
+            </p>
+            <ul className="space-y-3">
+              {['Real-time availability', 'Instant confirmation', 'Front-desk reception included'].map((item) => (
+                <li key={item} className="flex items-center gap-3 text-[15px] text-lt-white/85">
+                  <span className="flex h-5 w-5 items-center justify-center bg-lt-auburn/90 shrink-0">
+                    <Check size={12} className="text-lt-white" strokeWidth={3} />
+                  </span>
+                  {item}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        )}
 
-        {step > 0 && (
-          <div className="bg-lt-cream shadow-2xl flex flex-col lg:flex-row overflow-hidden border border-lt-line max-w-5xl mx-auto">
-            {/* Left Column - Summary */}
-            <div className="w-full lg:w-2/5 bg-lt-white border-r border-lt-line p-8 lg:p-10 flex flex-col">
-              <div className="flex items-center mb-8">
-                <button type="button" onClick={() => setStep(0)} className="mr-4 text-lt-onyx/50 hover:text-lt-auburn transition-colors">
-                  <ChevronLeft size={20} />
-                </button>
-                <h3 className="font-title text-[22px] text-lt-onyx tracking-tight">Booking Summary</h3>
+          {/* Right — reservation form */}
+          <div className="bg-lt-white text-lt-onyx p-6 sm:p-8 rounded-sm border-t-4 border-lt-auburn shadow-2xl">
+            <h3 className="font-title font-bold text-xl text-lt-onyx mb-1 tracking-tight">Quick Reservation</h3>
+            <p className="text-[13px] text-lt-muted mb-6">Pay securely — powered by Stripe.</p>
+
+            {notice === 'success' && (
+              <div className="mb-5 rounded-sm border border-lt-auburn/30 bg-lt-auburn/5 px-4 py-3 text-[13px] text-lt-onyx">
+                Payment received — your reservation is confirmed. Check your email for details.
               </div>
-              
-              <div className="aspect-[4/3] overflow-hidden mb-8 bg-lt-line">
-                <img src={currentSpace.img} alt={currentSpace.title} className="w-full h-full object-cover mix-blend-multiply opacity-90" />
+            )}
+            {notice === 'cancelled' && (
+              <div className="mb-5 rounded-sm border border-lt-line bg-lt-cream px-4 py-3 text-[13px] text-lt-muted">
+                Checkout was cancelled. Your reservation was not charged.
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <input
+                type="text"
+                required
+                placeholder="Your name"
+                value={form.name}
+                onChange={(e) => update('name', e.target.value)}
+                className={inputClass}
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input
+                  type="email"
+                  required
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={(e) => update('email', e.target.value)}
+                  className={inputClass}
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone"
+                  value={form.phone}
+                  onChange={(e) => update('phone', e.target.value)}
+                  className={inputClass}
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <select
+                  value={form.spaceId}
+                  onChange={(e) => update('spaceId', e.target.value)}
+                  className={`${inputClass} cursor-pointer appearance-none`}
+                >
+                  {bookingSpaces.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.label} — ${s.hourly}/hr
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="date"
+                  required
+                  value={form.date}
+                  onChange={(e) => update('date', e.target.value)}
+                  className={inputClass}
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <select
+                  value={form.time}
+                  onChange={(e) => update('time', e.target.value)}
+                  className={`${inputClass} cursor-pointer appearance-none`}
+                >
+                  {START_TIMES.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+                <select
+                  value={form.duration}
+                  onChange={(e) => update('duration', parseInt(e.target.value))}
+                  className={`${inputClass} cursor-pointer appearance-none`}
+                >
+                  {Array.from({ length: 8 }, (_, i) => i + 1).map((h) => (
+                    <option key={h} value={h}>{h} hour{h > 1 ? 's' : ''}</option>
+                  ))}
+                </select>
               </div>
 
-              <div className="flex-1">
-                <h4 className="font-title text-3xl text-lt-onyx mb-2">{currentSpace.title}</h4>
-                <p className="text-[14px] text-lt-onyx/70 font-light mb-8">Professional {currentSpace.title.toLowerCase()} configured for immediate use.</p>
-                
-                <div className="space-y-4 mb-10">
-                  <div className="flex items-center text-[14px] text-lt-onyx/80 font-light">
-                    <Users size={16} className="text-lt-onyx/50 mr-4" />
-                    Capacity: {currentSpace.capacity}
-                  </div>
-                  <div className="flex items-center text-[14px] text-lt-onyx/80 font-light">
-                    <Monitor size={16} className="text-lt-onyx/50 mr-4" />
-                    A/V & Display Included
-                  </div>
-                  <div className="flex items-center text-[14px] text-lt-onyx/80 font-light">
-                    <Wifi size={16} className="text-lt-onyx/50 mr-4" />
-                    High-Speed Business WiFi
-                  </div>
-                </div>
+              <div className="flex items-center justify-between pt-2 pb-1">
+                <span className="text-[13px] text-lt-muted uppercase tracking-widest font-semibold">Total</span>
+                <span className="font-title font-bold text-2xl text-lt-onyx tracking-tight">${total.toFixed(2)}</span>
               </div>
 
-              <div className="pt-8 border-t border-lt-line">
-                <div className="flex justify-between text-[14px] text-lt-onyx/70 font-light mb-3">
-                  <span>${currentSpace.price} × {duration} {currentSpace.unit}{duration > 1 ? 's' : ''}</span>
-                  <span>${subtotal.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-[14px] text-lt-onyx/70 font-light mb-6">
-                  <span>Taxes & Fees</span>
-                  <span>${taxes.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-xl font-title text-lt-onyx">
-                  <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Flow */}
-            <div className="w-full lg:w-3/5 p-8 lg:p-12 relative bg-lt-cream">
-              <AnimatePresence mode="wait">
-                
-                {/* STEP 1: Details */}
-                {step === 1 && (
-                  <motion.form 
-                    key="step1"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    onSubmit={handleNext}
-                    className="space-y-6"
-                  >
-                    <div className="flex items-center justify-between mb-8">
-                      <h3 className="font-title font-bold text-2xl text-lt-onyx tracking-tight">Select Time</h3>
-                      <div className="text-sm font-bold text-lt-muted uppercase tracking-widest">Step 1 of 2</div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-bold text-lt-onyx uppercase tracking-wider mb-2">Date</label>
-                        <div className="relative">
-                          <Calendar size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-lt-muted" />
-                          <input 
-                            type="date" 
-                            required
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3.5 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-bold text-lt-onyx uppercase tracking-wider mb-2">Start Time</label>
-                        <div className="relative">
-                          <Clock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-lt-muted" />
-                          <select 
-                            value={time}
-                            onChange={(e) => setTime(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3.5 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all appearance-none cursor-pointer"
-                          >
-                            <option value="09:00">09:00 AM</option>
-                            <option value="10:00">10:00 AM</option>
-                            <option value="11:00">11:00 AM</option>
-                            <option value="13:00">01:00 PM</option>
-                            <option value="14:00">02:00 PM</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-bold text-lt-onyx uppercase tracking-wider mb-2">Duration ({currentSpace.unit}s)</label>
-                      <input 
-                        type="range" 
-                        min="1" max="8" 
-                        value={duration}
-                        onChange={(e) => setDuration(parseInt(e.target.value))}
-                        className="w-full h-2 bg-lt-line rounded-lg appearance-none cursor-pointer accent-lt-auburn"
-                      />
-                      <div className="flex justify-between text-xs font-bold text-lt-muted mt-2">
-                        <span>1 {currentSpace.unit}</span>
-                        <span>8 {currentSpace.unit}s</span>
-                      </div>
-                    </div>
-
-                    <div className="pt-6">
-                      <button type="submit" className="w-full bg-lt-auburn text-lt-white py-4 rounded-sm font-bold tracking-widest uppercase hover:bg-lt-auburn-dark transition-all">
-                        Continue to Payment
-                      </button>
-                    </div>
-                  </motion.form>
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="lt-btn-primary w-full disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {status === 'loading' ? (
+                  <Loader2 size={16} className="animate-spin" />
+                ) : (
+                  'Reserve & Pay'
                 )}
+              </button>
 
-                {/* STEP 2: Payment */}
-                {step === 2 && (
-                  <motion.form 
-                    key="step2"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    onSubmit={handleNext}
-                    className="space-y-6"
-                  >
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="flex items-center">
-                        <button type="button" onClick={() => setStep(1)} className="mr-4 text-lt-muted hover:text-lt-auburn transition-colors">
-                          <ChevronLeft size={24} />
-                        </button>
-                        <h3 className="font-title font-bold text-2xl text-lt-onyx tracking-tight">Checkout</h3>
-                      </div>
-                      <div className="text-sm font-bold text-lt-muted uppercase tracking-widest">Step 2 of 2</div>
-                    </div>
+              {message && <p className="text-[13px] text-lt-auburn text-center">{message}</p>}
 
-                    <div className="space-y-4">
-                      <label className="block text-sm font-bold text-lt-onyx uppercase tracking-wider">Contact Details</label>
-                      <div className="grid grid-cols-2 gap-4">
-                        <input type="text" required placeholder="First Name" className="w-full px-4 py-3 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all" />
-                        <input type="text" required placeholder="Last Name" className="w-full px-4 py-3 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all" />
-                      </div>
-                      <input type="email" required placeholder="Email Address" className="w-full px-4 py-3 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all" />
-                    </div>
-
-                    <div className="space-y-4 pt-4 border-t border-lt-line">
-                      <label className="block text-sm font-bold text-lt-onyx uppercase tracking-wider flex items-center justify-between">
-                        <span>Payment Method</span>
-                        <div className="flex gap-2">
-                          <div className="w-8 h-5 bg-lt-line rounded-sm"></div>
-                          <div className="w-8 h-5 bg-lt-line rounded-sm"></div>
-                        </div>
-                      </label>
-                      <div className="relative">
-                        <CreditCard size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-lt-muted" />
-                        <input type="text" required placeholder="Card Number" className="w-full pl-12 pr-4 py-3 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all" />
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <input type="text" required placeholder="MM / YY" className="w-full px-4 py-3 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all" />
-                        <input type="text" required placeholder="CVC" className="w-full px-4 py-3 bg-lt-cream border border-lt-line rounded-sm text-sm font-medium focus:outline-none focus:border-lt-auburn focus:ring-1 focus:ring-lt-auburn transition-all" />
-                      </div>
-                    </div>
-
-                    <div className="pt-6">
-                      <button 
-                        type="submit" 
-                        disabled={isProcessing}
-                        className="w-full bg-lt-auburn text-lt-white py-4 rounded-sm font-bold tracking-widest uppercase hover:bg-lt-auburn-dark transition-all disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
-                      >
-                        {isProcessing ? (
-                          <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        ) : (
-                          `Pay $${total.toFixed(2)}`
-                        )}
-                      </button>
-                      <div className="text-center mt-4 flex items-center justify-center text-xs text-lt-muted font-medium">
-                        <ShieldCheck size={14} className="mr-1.5 text-lt-auburn" />
-                        Payments are secure and encrypted
-                      </div>
-                    </div>
-                  </motion.form>
-                )}
-
-                {/* STEP 3: Success */}
-                {step === 3 && (
-                  <motion.div 
-                    key="step3"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="h-full flex flex-col items-center justify-center text-center py-12"
-                  >
-                    <div className="w-20 h-20 bg-lt-auburn/10 rounded-full flex items-center justify-center mb-6">
-                      <CheckCircle2 size={40} className="text-lt-auburn" />
-                    </div>
-                    <h3 className="font-title font-bold text-3xl text-lt-onyx tracking-tight mb-4">Booking Confirmed!</h3>
-                    <p className="text-lt-muted font-medium mb-8 max-w-sm">
-                      Your reservation for the {currentSpace.title} on {date || 'the selected date'} has been confirmed. We've sent the details to your email.
-                    </p>
-                    <button 
-                      onClick={() => { setStep(0); setDate(''); }}
-                      className="border-2 border-lt-onyx text-lt-onyx px-8 py-3 rounded-sm font-bold tracking-widest uppercase hover:bg-lt-onyx hover:text-lt-white transition-all"
-                    >
-                      Return to Spaces
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+              <p className="flex items-center justify-center gap-1.5 text-[12px] text-lt-muted pt-1">
+                <ShieldCheck size={13} className="text-lt-auburn" />
+                Card details are handled securely by Stripe.
+              </p>
+            </form>
           </div>
-        )}
 
+        </div>
       </div>
     </section>
   );
 }
-

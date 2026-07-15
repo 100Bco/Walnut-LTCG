@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* Font families are provided by next/font (see app/layout.tsx) */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-title: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  /* Font families are provided by next/font (see app/layout.tsx).
+     LTCG mockup uses Hind for both body and headings. */
+  --font-sans: var(--font-hind), ui-sans-serif, system-ui, sans-serif;
+  --font-title: var(--font-hind), ui-sans-serif, system-ui, sans-serif;
 
   /* Brand palette — aligned to the LT Commercial Group brand guide */
   --color-lt-onyx: #1A1A1A;
@@ -87,16 +88,16 @@ select:focus-visible {
     letter-spacing: 0.3em;
   }
 
-  /* Standard section heading (H2) — one type ramp for all sections */
+  /* Standard section heading (H2) — sentence case, per the LTCG mockup */
   .lt-title {
-    @apply font-title font-extrabold uppercase leading-[1.05] tracking-tight
-           text-[2rem] sm:text-[2.5rem] lg:text-[3.25rem];
+    @apply font-title font-bold leading-[1.12] tracking-tight
+           text-[2rem] sm:text-[2.4rem] lg:text-[2.75rem];
   }
 
   /* Oversized display heading (hero / final CTA) */
   .lt-display {
-    @apply font-title font-extrabold uppercase leading-[0.98] tracking-tight
-           text-[2.75rem] sm:text-6xl lg:text-[5.25rem];
+    @apply font-title font-bold leading-[1.06] tracking-tight
+           text-[2.5rem] sm:text-5xl lg:text-[3.75rem];
   }
 
   /* Intro paragraph under a heading */

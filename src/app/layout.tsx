@@ -1,19 +1,13 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { Hind } from 'next/font/google';
 import { SITE_URL, siteConfig } from '@/lib/site';
 import './globals.css';
 
-const inter = Inter({
+// LTCG brand typeface (per the official mockup) — used for body and headings.
+const hind = Hind({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-jakarta',
+  variable: '--font-hind',
   display: 'swap',
 });
 
@@ -120,7 +114,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
+    <html lang="en" className={hind.variable}>
       <body className="min-h-screen bg-lt-white text-lt-onyx font-sans antialiased selection:bg-lt-auburn selection:text-lt-white">
         {children}
         <script
