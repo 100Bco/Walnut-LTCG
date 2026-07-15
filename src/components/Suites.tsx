@@ -11,7 +11,7 @@ export default function Suites() {
       type: "Executive",
       title: "Executive Suite",
       term: "Monthly · Long term",
-      desc: "A private, furnished office with 24/7 access and your business address at Walnut. Includes front-desk reception for guests.",
+      desc: "A private, furnished office with 24/7 access and your business address at Walnut.",
       features: [
         "Furnished private office",
         "24/7 secure access",
@@ -20,7 +20,7 @@ export default function Suites() {
       ],
       price: "$895",
       priceUnit: "/ month",
-      cta: "Tour Space",
+      cta: "Tour",
       isPopular: true,
       images: [
         "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1500&auto=format&fit=crop",
@@ -33,12 +33,12 @@ export default function Suites() {
       type: "Team",
       title: "Team Office",
       term: "Monthly · Yearly",
-      desc: "Larger suite for growing teams of 3–10+ with everything needed to operate. Includes branded directory listing.",
+      desc: "Larger suite for growing teams of 3–10+ with everything needed to operate.",
       features: [
         "Multi-desk private suite",
+        "Branded directory listing",
         "Dedicated parking spots",
-        "All amenities included",
-        "Customizable layout"
+        "All amenities included"
       ],
       price: "From $2,400",
       priceUnit: "/ mo",
@@ -58,8 +58,8 @@ export default function Suites() {
       features: [
         "Seats up to 12",
         "A/V and display included",
-        "Complimentary beverages",
-        "Whiteboard wall"
+        "Front-desk reception for guests",
+        "Complimentary beverages"
       ],
       price: "$45",
       priceUnit: "/ hour",
