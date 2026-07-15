@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, MapPin, Phone, ShieldCheck } from 'lucide-react';
+import { ArrowRight, MapPin, Phone } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const heroImages = [
@@ -67,10 +67,6 @@ export default function Hero() {
             <div className="flex items-center gap-2">
               <Phone size={14} className="text-lt-auburn" />
               (512) 490-6666
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck size={14} className="text-lt-auburn" />
-              Gated · Cameras · Alarmed
             </div>
           </div>
         </motion.div>
