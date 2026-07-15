@@ -18,22 +18,14 @@ export default function Header() {
       <div className="lt-container">
         <div className="flex h-20 items-center justify-between">
           {/* Logo — LT Commercial Group */}
-          <a href="#" className="group flex items-center gap-3" aria-label="LT Commercial Group — home">
+          <a href="#" className="flex items-center" aria-label="LT Commercial Group — home">
             <img
-              src="/ltcg-icon.png"
+              src="/ltcg-logo.png"
               alt="LT Commercial Group"
-              className="h-11 w-auto"
-              width={125}
-              height={173}
+              className="h-14 w-auto"
+              width={442}
+              height={694}
             />
-            <span className="flex flex-col leading-none">
-              <span className="font-title text-[17px] font-extrabold uppercase tracking-tight text-lt-onyx transition-colors group-hover:text-lt-auburn">
-                LT Commercial
-              </span>
-              <span className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.28em] text-lt-auburn">
-                Group
-              </span>
-            </span>
           </a>
 
           {/* Desktop Navigation */}

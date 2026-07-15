@@ -71,15 +71,15 @@ export default function BookRoom() {
   };
 
   return (
-    <section id="book" className="lt-section bg-lt-white relative overflow-hidden border-t border-lt-line">
+    <section id="book" className="py-12 lg:py-16 bg-lt-white relative overflow-hidden border-t border-lt-line">
       <div className="lt-container relative z-10">
 
         {step === 0 && (
           <div>
-            <div className="text-center mb-14 max-w-5xl mx-auto">
+            <div className="text-center mb-8 lg:mb-10 max-w-5xl mx-auto">
               <div className="lt-eyebrow">Real-Time Reservations</div>
-              <h2 className="lt-title mb-6">
-                NO HIDDEN FEES. NO COMMITMENT. <br />
+              <h2 className="lt-title mb-4">
+                NO HIDDEN FEES. NO COMMITMENT. <br className="hidden sm:block" />
                 <span className="text-lt-onyx/40">NO MEMBERSHIPS.</span>
               </h2>
               <p className="lt-lead mx-auto text-center">
@@ -87,18 +87,18 @@ export default function BookRoom() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {spacesList.map((s) => (
-                <div key={s.id} className="flex flex-col text-center group border border-lt-line p-4 pb-8 hover:-translate-y-2 transition-all duration-500 shadow-sm hover:shadow-xl bg-lt-cream">
-                  <div className="aspect-[4/3] mb-8 overflow-hidden bg-lt-line relative">
+                <div key={s.id} className="flex flex-col text-center group border border-lt-line p-4 pb-6 hover:-translate-y-2 transition-all duration-500 shadow-sm hover:shadow-xl bg-lt-cream">
+                  <div className="aspect-[16/10] mb-5 overflow-hidden bg-lt-line relative">
                     <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   </div>
-                  <h3 className="font-title font-bold text-3xl text-lt-onyx mb-3 tracking-tight">{s.title}</h3>
-                  <p className="text-[14px] text-lt-onyx/70 font-light mb-8 flex-1 px-6 leading-relaxed">{s.desc}</p>
+                  <h3 className="font-title font-bold text-2xl text-lt-onyx mb-2 tracking-tight">{s.title}</h3>
+                  <p className="text-[13px] text-lt-onyx/70 font-light mb-5 flex-1 px-4 leading-relaxed">{s.desc}</p>
                   <div className="flex flex-col items-center">
                     <button
                       onClick={() => selectSpace(s.id)}
-                      className="lt-btn-primary mb-4 w-full max-w-[240px]"
+                      className="lt-btn-primary mb-3 w-full max-w-[240px]"
                     >
                       {s.btn}
                     </button>

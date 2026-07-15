@@ -8,7 +8,7 @@ export default function Stats() {
     { number: "24/7", label: "Secured access" },
     { number: "5", label: "Suite types" },
     { number: "100%", label: "Move-in ready" },
-    { number: "15 min", label: "To central Austin" },
+    { number: "15", label: "Min to central Austin", centered: true },
   ];
 
   return (
@@ -22,7 +22,9 @@ export default function Stats() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex items-baseline gap-2 justify-center lg:justify-start lg:pl-8 lg:border-l border-lt-white/20 lg:first:border-0 lg:first:pl-0"
+              className={`flex items-baseline gap-2 lg:pl-8 lg:border-l border-lt-white/20 lg:first:border-0 lg:first:pl-0 ${
+                stat.centered ? 'justify-center' : 'justify-center lg:justify-start'
+              }`}
             >
               <span className="font-title font-extrabold text-base lg:text-lg text-lt-white leading-none tracking-tight">
                 {stat.number}
