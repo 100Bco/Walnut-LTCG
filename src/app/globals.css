@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-title: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  /* Font families are provided by next/font (see app/layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-title: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 
   /* Brand palette — aligned to the LT Commercial Group brand guide */
   --color-lt-onyx: #1A1A1A;
