@@ -88,15 +88,15 @@ export default function Suites() {
   };
 
   return (
-    <section id="suites" className="py-10 lg:py-16 bg-lt-cream border-t border-lt-line relative text-lt-onyx">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-3xl mb-8 lg:mb-10">
-          <div className="text-lt-auburn font-bold text-[11px] tracking-[0.3em] uppercase mb-4 pb-2 border-b-2 border-lt-auburn inline-block">Spaces & Suites</div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[52px] text-lt-onyx font-title font-extrabold leading-[1.02] tracking-tight uppercase mb-4">
+    <section id="suites" className="lt-section bg-lt-cream border-t border-lt-line relative text-lt-onyx">
+      <div className="lt-container relative z-10">
+        <div className="max-w-3xl mb-12 lg:mb-16">
+          <div className="lt-eyebrow">Spaces &amp; Suites</div>
+          <h2 className="lt-title mb-6">
             MATCH THE SPACE <br className="hidden lg:block" />
             <span className="text-lt-onyx/40">TO THE WORK.</span>
           </h2>
-          <p className="text-lg text-lt-onyx/80 font-light max-w-2xl leading-relaxed">
+          <p className="lt-lead">
             Every suite at Walnut is fully furnished, professionally maintained, and supported by an on-site reception team.
           </p>
         </div>

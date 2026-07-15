@@ -69,19 +69,19 @@ export default function BookRoom() {
   };
 
   return (
-    <section id="book" className="py-16 lg:py-20 bg-lt-white relative overflow-hidden border-t border-lt-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+    <section id="book" className="lt-section bg-lt-white relative overflow-hidden border-t border-lt-line">
+      <div className="lt-container relative z-10">
+
         {step === 0 && (
-          <div className="mb-8">
-            <div className="text-center mb-12 max-w-5xl mx-auto">
-              <div className="text-lt-auburn font-bold text-[11px] tracking-[0.3em] uppercase mb-6 pb-3 border-b-2 border-lt-auburn inline-block">Real-Time Reservations</div>
-              <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-title font-extrabold leading-[1.02] tracking-tight mb-6 text-lt-onyx uppercase">
+          <div>
+            <div className="text-center mb-14 max-w-5xl mx-auto">
+              <div className="lt-eyebrow">Real-Time Reservations</div>
+              <h2 className="lt-title mb-6">
                 NO HIDDEN FEES. NO COMMITMENT. <br />
                 <span className="text-lt-onyx/40">NO MEMBERSHIPS.</span>
               </h2>
-              <p className="text-lg text-lt-onyx/70 font-light max-w-2xl mx-auto leading-relaxed">
-                Select your space, choose a date and time, and check out. It’s that simple. 
+              <p className="lt-lead mx-auto text-center">
+                Select your space, choose a date and time, and check out. It’s that simple.
               </p>
             </div>
 
@@ -94,9 +94,9 @@ export default function BookRoom() {
                   <h3 className="font-title font-bold text-3xl text-lt-onyx mb-3 tracking-tight">{s.title}</h3>
                   <p className="text-[14px] text-lt-onyx/70 font-light mb-8 flex-1 px-6 leading-relaxed">{s.desc}</p>
                   <div className="flex flex-col items-center">
-                    <button 
+                    <button
                       onClick={() => selectSpace(s.id)}
-                      className="bg-lt-onyx text-lt-white px-8 py-4 font-bold tracking-widest text-[10px] uppercase hover:bg-lt-auburn transition-colors mb-4 w-full max-w-[240px]"
+                      className="lt-btn-primary mb-4 w-full max-w-[240px]"
                     >
                       {s.btn}
                     </button>

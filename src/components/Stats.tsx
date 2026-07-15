@@ -10,8 +10,8 @@ export default function Stats() {
   ];
 
   return (
-    <section className="bg-lt-auburn border-y border-lt-auburn-dark text-lt-white overflow-hidden py-3">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-lt-auburn border-y border-lt-auburn-dark text-lt-white overflow-hidden py-5">
+      <div className="lt-container">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-4 gap-x-6 items-center">
           {stats.map((stat, index) => (
             <motion.div 

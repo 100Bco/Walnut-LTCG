@@ -29,14 +29,14 @@ export default function Terms() {
   ];
 
   return (
-    <section className="py-16 lg:py-20 bg-lt-white border-t border-lt-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="lt-section bg-lt-white border-t border-lt-line">
+      <div className="lt-container">
         <div className="max-w-4xl mb-12 lg:mb-16">
-          <div className="text-lt-auburn font-bold text-[11px] tracking-[0.3em] uppercase mb-8 pb-3 border-b-2 border-lt-auburn inline-block">Flexible Terms</div>
-          <h2 className="text-4xl sm:text-5xl lg:text-[64px] text-lt-onyx font-title font-extrabold leading-[1.02] tracking-tight uppercase mb-6">
+          <div className="lt-eyebrow">Flexible Terms</div>
+          <h2 className="lt-title mb-6">
             PAY FOR THE SPACE YOU USE
           </h2>
-          <p className="text-xl text-lt-onyx/80 font-light max-w-2xl leading-relaxed">
+          <p className="lt-lead">
             From a single hour to a multi-year lease. Pricing scales with floor plan, suite size, and service usage.
           </p>
         </div>
@@ -61,12 +61,12 @@ export default function Terms() {
 
         <div className="mt-12 p-8 lg:p-12 bg-lt-cream border border-lt-line flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div className="flex-1 max-w-2xl">
-            <h4 className="font-title text-4xl text-lt-onyx mb-3 tracking-tight">Want a Custom Quote?</h4>
-            <p className="text-lg text-lt-onyx/70 font-light">Tell us about your team and we'll match you to the right suite at the right price.</p>
+            <h3 className="font-title text-3xl lg:text-4xl text-lt-onyx mb-3 tracking-tight">Want a Custom Quote?</h3>
+            <p className="lt-lead">Tell us about your team and we'll match you to the right suite at the right price.</p>
           </div>
-          <a href="#contact" className="inline-flex items-center justify-center bg-lt-onyx text-lt-white px-10 py-5 text-[11px] font-bold tracking-widest uppercase hover:bg-lt-auburn transition-all shrink-0 w-full md:w-auto shadow-xl group">
+          <a href="#contact" className="lt-btn-primary shrink-0 w-full md:w-auto group">
             Request Pricing
-            <ArrowRight size={16} className="ml-4 group-hover:translate-x-2 transition-transform" />
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       </div>

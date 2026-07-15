@@ -32,15 +32,15 @@ export default function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-16 lg:py-20 bg-lt-cream border-t border-lt-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-          
+    <section id="faq" className="lt-section bg-lt-cream border-t border-lt-line">
+      <div className="lt-container">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
+
           <div className="lg:w-1/3">
-            <div className="sticky top-32">
-              <div className="text-lt-auburn font-bold text-[11px] tracking-[0.3em] uppercase mb-6 pb-3 border-b-2 border-lt-auburn inline-block">Frequently Asked</div>
-              <h2 className="text-4xl sm:text-5xl lg:text-[56px] text-lt-onyx font-title font-extrabold leading-[1.05] tracking-tight uppercase">
-                DETAILS & <br />
+            <div className="sticky top-28">
+              <div className="lt-eyebrow">Frequently Asked</div>
+              <h2 className="lt-title">
+                DETAILS &amp; <br />
                 <span className="text-lt-onyx/40">ANSWERS.</span>
               </h2>
             </div>

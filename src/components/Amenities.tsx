@@ -2,17 +2,17 @@ import { Building2, DoorOpen, Coffee, Car, Lock, Video, Wifi, Mail } from 'lucid
 
 export default function Amenities() {
   return (
-    <section id="amenities" className="py-16 lg:py-24 bg-lt-cream text-lt-onyx border-t border-lt-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <section id="amenities" className="lt-section bg-lt-cream text-lt-onyx border-t border-lt-line">
+      <div className="lt-container">
+
         {/* Header */}
         <div className="max-w-3xl mb-12 lg:mb-16">
-          <div className="text-lt-auburn font-bold text-[11px] tracking-[0.3em] uppercase mb-4 pb-2 border-b-2 border-lt-auburn inline-block">What's Included</div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[56px] text-lt-onyx font-title font-extrabold leading-[1.02] tracking-tight uppercase mb-6">
+          <div className="lt-eyebrow">What&apos;s Included</div>
+          <h2 className="lt-title mb-6">
             EVERYTHING <br />
             <span className="text-lt-onyx/40">YOU NEED.</span>
           </h2>
-          <p className="text-lg text-lt-onyx/80 font-light max-w-2xl leading-relaxed">
+          <p className="lt-lead">
             A complete amenity set so the property handles the operational overhead — and your team handles the work.
           </p>
         </div>
