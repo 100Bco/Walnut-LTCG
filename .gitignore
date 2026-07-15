@@ -1,7 +1,15 @@
 # Dependencies
 node_modules/
 
-# Build output
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# Production build (legacy Vite)
 dist/
 
 # Logs

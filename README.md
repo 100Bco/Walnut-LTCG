@@ -1,20 +1,49 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# LT Commercial Group — Walnut Park
 
-# Run and deploy your AI Studio app
+Marketing site for LT Commercial Group's executive suites, team offices, and
+meeting rooms at Walnut Park Crossing, Austin, TX.
 
-This contains everything you need to run your app locally.
+Built with **Next.js (App Router)**, **React 19**, **Tailwind CSS v4** and
+**Motion**. Every page is server-rendered / statically generated so the full
+content is present in the HTML — which is what lets Google and AI crawlers
+index the site (an SPA only ships an empty `<div>` + JavaScript).
 
-View your app in AI Studio: https://ai.studio/apps/9ab50b48-15a4-4790-be61-e431261ef328
+## SEO / crawlability features
 
-## Run Locally
+- Server-rendered static HTML — all copy, headings and FAQs are in the source.
+- Per-page `metadata` (title, description, canonical, Open Graph, Twitter card).
+- JSON-LD structured data: `RealEstateAgent` (business info) and `FAQPage`
+  (eligible for FAQ rich results).
+- `app/sitemap.ts` → `/sitemap.xml` and `app/robots.ts` → `/robots.txt`
+  (all crawlers, including AI bots, allowed).
+- A branded Open Graph image at `/og.png`.
+- `next/font` for zero-layout-shift, self-hosted Google Fonts.
 
-**Prerequisites:**  Node.js
+## Run locally
 
+**Prerequisites:** Node.js 18.18+.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm install
+npm run dev     # http://localhost:3000
+```
+
+## Build & serve
+
+```bash
+npm run build
+npm run start
+```
+
+## Configuration
+
+Set your production domain so canonical URLs, the sitemap, robots.txt and
+Open Graph tags resolve correctly. Create `.env.local` (or set it in your
+hosting provider):
+
+```
+NEXT_PUBLIC_SITE_URL=https://www.your-domain.com
+```
+
+It defaults to `http://localhost:3000` when unset. Business details
+(address, phone, geo, keywords) live in `src/lib/site.ts`.

@@ -1,3 +1,5 @@
+'use client';
+
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, MapPin, Phone, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
