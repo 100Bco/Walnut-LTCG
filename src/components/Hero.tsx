@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, MapPin, Phone, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const heroImages = [
@@ -31,20 +31,22 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-xl w-full relative z-10"
         >
-          <div className="flex items-center gap-4 mb-6">
-            <span className="w-12 h-[2px] bg-lt-auburn block"></span>
-            <span className="text-lt-onyx font-bold text-[11px] tracking-[0.3em] uppercase">
-              Premium Executive Suites
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <span className="bg-lt-auburn px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-lt-white">
+              For Lease
+            </span>
+            <span className="text-lt-onyx font-semibold text-[12px] tracking-[0.14em] uppercase">
+              Walnut Park Crossing · North Austin
             </span>
           </div>
 
           <h1 className="lt-display text-lt-onyx mb-6">
-            Built For <br />
-            <span className="text-lt-auburn">Excellence.</span>
+            Workspace built for the way{' '}
+            <span className="text-lt-auburn">business actually runs.</span>
           </h1>
 
-          <p className="lt-lead mb-8 max-w-md">
-            Private executive suites, team offices, and on-demand meeting rooms — secured, staffed, and ready to occupy immediately.
+          <p className="lt-lead mb-8 max-w-lg">
+            Private executive suites, team offices, and on-demand meeting rooms at Walnut Park Crossing — secured, staffed, and ready to occupy.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center mb-10">
@@ -53,18 +55,22 @@ export default function Hero() {
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a href="#book" className="lt-btn-outline">
-              Reserve a Space
+              Reserve a Meeting Room
             </a>
           </div>
 
-          <div className="flex flex-wrap gap-x-8 gap-y-4 text-[11px] text-lt-onyx/60 font-semibold tracking-widest uppercase">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-wrap gap-x-7 gap-y-3 text-[12px] text-lt-onyx/70 font-medium">
+            <div className="flex items-center gap-2">
               <MapPin size={14} className="text-lt-auburn" />
-              Austin, TX
+              12516 Walnut Park Crossing, Austin TX
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Phone size={14} className="text-lt-auburn" />
               (512) 490-6666
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck size={14} className="text-lt-auburn" />
+              Gated · Cameras · Alarmed
             </div>
           </div>
         </motion.div>

@@ -16,8 +16,7 @@ export default function FAQ() {
             <div className="sticky top-28">
               <div className="lt-eyebrow">Frequently Asked</div>
               <h2 className="lt-title">
-                DETAILS &amp; <br />
-                <span className="text-lt-onyx/40">ANSWERS.</span>
+                Answers to common questions.
               </h2>
             </div>
           </div>

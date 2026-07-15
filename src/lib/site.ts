@@ -46,3 +46,15 @@ export const siteConfig = {
     'virtual business address Austin',
   ],
 } as const;
+
+/**
+ * Bookable spaces + hourly rates (USD) used to build the Stripe Checkout
+ * session. Adjust rates here; the charged amount is rate × duration (hours).
+ */
+export const bookingSpaces = [
+  { id: 'meeting-room', label: 'Meeting Room', hourly: 45 },
+  { id: 'day-office', label: 'Day Office', hourly: 35 },
+  { id: 'conference-room', label: 'Conference Room', hourly: 75 },
+] as const;
+
+export type BookingSpaceId = (typeof bookingSpaces)[number]['id'];

@@ -15,12 +15,11 @@ export default function FinalCTA() {
             <div className="mb-6 inline-block border-b-2 border-lt-white/30 pb-3 text-[11px] font-bold uppercase tracking-[0.3em] text-lt-white">
               Take the next step
             </div>
-            <h2 className="lt-display mb-8 text-lt-white">
-              WALK THROUGH <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">THE SPACE.</span>
+            <h2 className="lt-display mb-6 text-lt-white">
+              Walk through the space yourself.
             </h2>
             <p className="lt-lead max-w-xl text-lt-white/80">
-              Most decisions are made in the first ten minutes of a tour. See how Walnut Park Crossing can elevate your daily operations.
+              Most decisions are made in the first ten minutes of a tour. Schedule yours.
             </p>
           </div>
 

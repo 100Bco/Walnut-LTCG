@@ -94,9 +94,8 @@ export default function Suites() {
       <div className="lt-container relative z-10">
         <div className="max-w-3xl mb-12 lg:mb-16">
           <div className="lt-eyebrow">Spaces &amp; Suites</div>
-          <h2 className="lt-title mb-6">
-            MATCH THE SPACE <br className="hidden lg:block" />
-            <span className="text-lt-onyx/40">TO THE WORK.</span>
+          <h2 className="lt-title mb-4">
+            Match the space to the work — not the other way around.
           </h2>
           <p className="lt-lead">
             Every suite at Walnut is fully furnished, professionally maintained, and supported by an on-site reception team.
@@ -215,6 +214,13 @@ export default function Suites() {
             ))}
           </div>
 
+        </div>
+
+        <div className="mt-8 border-l-2 border-lt-auburn bg-lt-cream px-6 py-4 text-sm text-lt-onyx/70">
+          Also available:{' '}
+          <strong className="font-semibold text-lt-onyx">Day Offices</strong> ·{' '}
+          <strong className="font-semibold text-lt-onyx">Virtual Mail Service</strong> ·{' '}
+          <strong className="font-semibold text-lt-onyx">Hourly Coworking Desks</strong>
         </div>
       </div>
     </section>

@@ -34,7 +34,7 @@ export default function Terms() {
         <div className="max-w-4xl mb-12 lg:mb-16">
           <div className="lt-eyebrow">Flexible Terms</div>
           <h2 className="lt-title mb-6">
-            PAY FOR THE SPACE YOU USE
+            Pay for the space you use — at the commitment that fits.
           </h2>
           <p className="lt-lead">
             From a single hour to a multi-year lease. Pricing scales with floor plan, suite size, and service usage.

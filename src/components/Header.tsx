@@ -9,7 +9,7 @@ export default function Header() {
   const navLinks = [
     { href: '#suites', label: 'Suites' },
     { href: '#amenities', label: 'Amenities' },
-    { href: '#book', label: 'Reserve' },
+    { href: '#book', label: 'Reserve a Room' },
     { href: '#faq', label: 'FAQ' },
   ];
 
