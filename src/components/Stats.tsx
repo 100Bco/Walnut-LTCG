@@ -11,7 +11,7 @@ export default function Stats() {
   ];
 
   return (
-    <section className="bg-lt-white border-b border-lt-line py-14 lg:py-16">
+    <section className="bg-lt-cream border-b border-lt-line py-14 lg:py-16">
       <div className="lt-container">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
           {stats.map((stat, index) => (
