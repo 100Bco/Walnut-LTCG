@@ -11,7 +11,7 @@ export default function Suites() {
       type: "Executive",
       title: "Executive Suite",
       term: "Monthly · Long term",
-      desc: "A private, furnished office with 24/7 access and your business address at Walnut. Includes front-desk reception for guests.",
+      desc: "A private, furnished office with 24/7 access and your business address at Walnut.",
       features: [
         "Furnished private office",
         "24/7 secure access",
@@ -20,7 +20,7 @@ export default function Suites() {
       ],
       price: "$895",
       priceUnit: "/ month",
-      cta: "Tour Space",
+      cta: "Tour",
       isPopular: true,
       images: [
         "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1500&auto=format&fit=crop",
@@ -33,12 +33,12 @@ export default function Suites() {
       type: "Team",
       title: "Team Office",
       term: "Monthly · Yearly",
-      desc: "Larger suite for growing teams of 3–10+ with everything needed to operate. Includes branded directory listing.",
+      desc: "Larger suite for growing teams of 3–10+ with everything needed to operate.",
       features: [
         "Multi-desk private suite",
+        "Branded directory listing",
         "Dedicated parking spots",
-        "All amenities included",
-        "Customizable layout"
+        "All amenities included"
       ],
       price: "From $2,400",
       priceUnit: "/ mo",
@@ -58,8 +58,8 @@ export default function Suites() {
       features: [
         "Seats up to 12",
         "A/V and display included",
-        "Complimentary beverages",
-        "Whiteboard wall"
+        "Front-desk reception for guests",
+        "Complimentary beverages"
       ],
       price: "$45",
       priceUnit: "/ hour",
@@ -105,7 +105,7 @@ export default function Suites() {
         <div className="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
           
           {/* Active Suite Details (Left) */}
-          <div className="w-full lg:w-3/5 group relative bg-lt-auburn text-lt-white overflow-hidden shadow-2xl flex flex-col">
+          <div className="w-full lg:w-3/5 group relative bg-lt-auburn text-lt-white overflow-hidden shadow-xl flex flex-col">
             {/* Image Gallery */}
             <div className="relative h-[300px] lg:h-auto lg:flex-1 w-full overflow-hidden bg-lt-auburn min-h-[300px]">
               <AnimatePresence mode="wait">
@@ -194,7 +194,7 @@ export default function Suites() {
               <button 
                 key={suite.id} 
                 onClick={() => setActiveSuiteIdx(idx)}
-                className={`flex flex-col justify-center text-left p-5 lg:p-6 transition-all duration-300 border flex-1 ${activeSuiteIdx === idx ? 'bg-lt-auburn border-lt-auburn text-lt-white shadow-2xl lg:-translate-x-4 relative z-20' : 'bg-lt-white border-transparent text-lt-onyx hover:bg-lt-cream hover:shadow-xl relative z-10'}`}
+                className={`flex flex-col justify-center text-left p-5 lg:p-6 transition-all duration-300 border flex-1 ${activeSuiteIdx === idx ? 'bg-lt-auburn border-lt-auburn text-lt-white shadow-xl lg:-translate-x-4 relative z-20' : 'bg-lt-white border-transparent text-lt-onyx hover:bg-lt-cream hover:shadow-xl relative z-10'}`}
               >
                 <div className="flex w-full justify-between items-center mb-1">
                   <h4 className={`font-title text-xl tracking-tight ${activeSuiteIdx === idx ? 'text-lt-white' : 'text-lt-onyx'}`}>

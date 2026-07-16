@@ -83,16 +83,16 @@ const amenities: Amenity[] = [
 
 export default function Amenities() {
   return (
-    <section id="amenities" className="py-12 lg:py-16 bg-lt-cream text-lt-onyx border-t border-lt-line">
+    <section id="amenities" className="py-12 lg:py-16 bg-lt-onyx text-lt-white border-t border-lt-onyx-deep">
       <div className="lt-container">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 lg:mb-10">
           <div className="max-w-xl">
             <div className="lt-eyebrow">What&apos;s Included</div>
-            <h2 className="lt-title">What this means for your day-to-day.</h2>
+            <h2 className="lt-title text-lt-white">What this means for your day-to-day.</h2>
           </div>
-          <p className="lt-lead md:text-right text-base">
+          <p className="lt-lead md:text-right text-base text-lt-white/70">
             A complete amenity set so the property handles the operational overhead — and your team handles the work.
           </p>
         </div>
@@ -133,27 +133,17 @@ export default function Amenities() {
               );
             }
 
-            if (variant === 'dark') {
-              return (
-                <div key={title} className={`bg-lt-onyx text-lt-white p-5 lg:p-6 flex flex-col justify-center ${span}`}>
-                  <Icon size={24} className="mb-3 text-lt-cream" strokeWidth={1.5} />
-                  <h3 className="font-title text-lg font-bold mb-1 tracking-tight">{title}</h3>
-                  <p className="text-white/70 font-light text-[13px] leading-relaxed">{desc}</p>
-                </div>
-              );
-            }
-
-            // card
+            // 'card' and 'dark' both render as a hairline-bordered dark tile
             return (
               <div
                 key={title}
-                className={`group bg-lt-white border border-lt-line p-5 lg:p-6 flex flex-col justify-center transition-colors hover:border-lt-auburn ${span}`}
+                className={`group bg-lt-onyx-deep border border-lt-white/10 p-5 lg:p-6 flex flex-col justify-center transition-colors hover:border-lt-auburn ${span}`}
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center border-l-2 border-lt-auburn bg-lt-auburn/10 text-lt-auburn">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center border-l-2 border-lt-auburn bg-lt-auburn/20 text-lt-auburn">
                   <Icon size={20} strokeWidth={1.75} />
                 </div>
-                <h3 className="font-title text-lg font-bold text-lt-onyx mb-1 tracking-tight">{title}</h3>
-                <p className="text-[13px] text-lt-onyx/65 leading-relaxed">{desc}</p>
+                <h3 className="font-title text-lg font-bold text-lt-white mb-1 tracking-tight">{title}</h3>
+                <p className="text-[13px] text-lt-white/60 leading-relaxed">{desc}</p>
               </div>
             );
           })}

@@ -65,6 +65,31 @@ select:focus-visible {
   }
 }
 
+/* Signature motif — auburn right-angle corner brackets (echoes the LT mark).
+   Apply to a `position: relative` element to frame it top-left + bottom-right. */
+.lt-bracket::before,
+.lt-bracket::after {
+  content: "";
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-color: var(--color-lt-auburn);
+  pointer-events: none;
+  z-index: 20;
+}
+.lt-bracket::before {
+  top: 1.25rem;
+  left: 1.25rem;
+  border-top: 3px solid var(--color-lt-auburn);
+  border-left: 3px solid var(--color-lt-auburn);
+}
+.lt-bracket::after {
+  bottom: 1.25rem;
+  right: 1.25rem;
+  border-bottom: 3px solid var(--color-lt-auburn);
+  border-right: 3px solid var(--color-lt-auburn);
+}
+
 /* ------------------------------------------------- Design-system layer
    Shared building blocks so spacing, padding, headings and buttons stay
    synchronized across every section of the site. */

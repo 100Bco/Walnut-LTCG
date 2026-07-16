@@ -61,7 +61,7 @@ export default function Terms() {
 
         <div className="mt-12 p-8 lg:p-12 bg-lt-cream border border-lt-line flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div className="flex-1 max-w-2xl">
-            <h3 className="font-title text-3xl lg:text-4xl text-lt-onyx mb-3 tracking-tight">Want a Custom Quote?</h3>
+            <h3 className="font-title text-3xl lg:text-4xl text-lt-onyx mb-3 tracking-tight">Want a custom quote?</h3>
             <p className="lt-lead">Tell us about your team and we'll match you to the right suite at the right price.</p>
           </div>
           <a href="#contact" className="lt-btn-primary shrink-0 w-full md:w-auto group">
