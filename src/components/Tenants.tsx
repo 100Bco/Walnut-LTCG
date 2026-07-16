@@ -6,9 +6,9 @@ export default function Tenants() {
   return (
     <section id="tenants" className="bg-lt-white border-b border-lt-line py-12 lg:py-16">
       <div className="lt-container">
-        <div className="text-center mb-10">
-          <div className="lt-eyebrow">Our Tenants</div>
-          <p className="text-base text-lt-onyx/70 font-light">
+        <div className="text-center mb-10 lg:mb-12">
+          <h2 className="lt-title">Our Tenants</h2>
+          <p className="lt-lead mx-auto mt-4 text-center">
             Businesses that lease and grow at Walnut Park Crossing.
           </p>
         </div>
