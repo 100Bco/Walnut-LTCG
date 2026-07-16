@@ -61,9 +61,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Large watermark text */}
-        <div className="border-t border-lt-white/10 pt-16 pb-8 text-center select-none">
-          <h2 className="font-title font-bold text-[12vw] leading-none text-lt-white/5 tracking-tighter">WALNUT PARK</h2>
+        {/* Large watermark text — always on a single line */}
+        <div className="border-t border-lt-white/10 pt-16 pb-8 text-center select-none overflow-hidden">
+          <h2 className="font-title font-bold text-[11.5vw] leading-none text-lt-white/5 tracking-tighter whitespace-nowrap">WALNUT PARK</h2>
         </div>
 
         <div className="pt-8 border-t border-lt-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] font-medium tracking-widest uppercase">
