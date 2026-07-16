@@ -11,10 +11,9 @@ export interface Tenant {
  * this list (see /public/tenants/README.md).
  */
 export const tenants: Tenant[] = [
-  { name: 'Northgate', src: '/tenants/tenant-1.svg' },
-  { name: 'Vertex', src: '/tenants/tenant-2.svg' },
-  { name: 'Lumen', src: '/tenants/tenant-3.svg' },
-  { name: 'Cedar & Co', src: '/tenants/tenant-4.svg' },
-  { name: 'Atlas', src: '/tenants/tenant-5.svg' },
-  { name: 'Brightpath', src: '/tenants/tenant-6.svg' },
+  { name: '24/7 Mortgage', src: '/tenants/247-Logo.png' },
+  { name: 'Buildpro ATX', src: '/tenants/buildpro.png' },
+  { name: 'Synergy', src: '/tenants/Synergy-Logo-Horizontal-No-Tagline.png' },
+  { name: 'Titan Title & Closing', src: '/tenants/titan.png' },
+  { name: 'Easy Mortgage with Yara', src: '/tenants/easy-mortgage.png' },
 ];
