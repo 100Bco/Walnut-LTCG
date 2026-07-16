@@ -13,13 +13,17 @@ export default function Tenants() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-10 items-center">
+        {/* 3-up on mobile, then 2 centered below; all five on one row from lg */}
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-8 lg:gap-x-8">
           {tenants.map((tenant) => (
-            <div key={tenant.src} className="flex justify-center">
+            <div
+              key={tenant.src}
+              className="flex justify-center basis-1/4 grow-0 lg:basis-0 lg:grow"
+            >
               <img
                 src={tenant.src}
                 alt={tenant.name}
-                className="h-11 lg:h-14 w-auto max-w-full object-contain"
+                className={`${tenant.wide ? 'h-8 lg:h-12' : 'h-11 lg:h-20'} w-auto max-w-full object-contain`}
                 loading="lazy"
               />
             </div>
