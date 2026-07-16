@@ -19,7 +19,7 @@ const amenities: Amenity[] = [
     icon: Building2,
     variant: 'image',
     img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80',
-    span: 'col-span-2 lg:row-span-2',
+    span: 'md:col-span-2 lg:row-span-2',
   },
   {
     title: 'Private Offices',
@@ -27,21 +27,21 @@ const amenities: Amenity[] = [
     icon: DoorOpen,
     variant: 'image',
     img: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&q=80',
-    span: 'col-span-1 lg:row-span-2',
+    span: 'lg:row-span-2',
   },
   {
     title: 'Stocked Kitchen',
     desc: 'Coffee, tea, filtered water, and a clean, modern break area.',
     icon: Coffee,
     variant: 'card',
-    span: 'col-span-1',
+    span: '',
   },
   {
     title: 'Modern Restrooms',
     desc: 'Clean, well-maintained facilities throughout the building.',
     icon: Sparkles,
     variant: 'card',
-    span: 'col-span-1',
+    span: '',
   },
   {
     title: 'On-Site Parking',
@@ -49,35 +49,35 @@ const amenities: Amenity[] = [
     icon: Car,
     variant: 'image',
     img: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&q=80',
-    span: 'col-span-2',
+    span: 'md:col-span-2',
   },
   {
     title: 'Gated Property',
     desc: 'Controlled-access entry. Your space stays your space.',
     icon: Lock,
     variant: 'card',
-    span: 'col-span-1',
+    span: '',
   },
   {
     title: 'Cameras & Alarms',
     desc: '24/7 monitored security throughout the property.',
     icon: Video,
     variant: 'dark',
-    span: 'col-span-1',
+    span: '',
   },
   {
     title: 'Business WiFi',
     desc: 'Fast, secure, business-class internet on every floor.',
     icon: Wifi,
     variant: 'auburn',
-    span: 'col-span-2',
+    span: 'md:col-span-2',
   },
   {
     title: 'Business Address',
     desc: 'Use Walnut Park Crossing as your professional mailing address.',
     icon: Mail,
     variant: 'card',
-    span: 'col-span-2',
+    span: 'md:col-span-2',
   },
 ];
 
@@ -98,13 +98,13 @@ export default function Amenities() {
         </div>
 
         {/* Bento grid — 9 amenities */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 auto-rows-[150px] md:auto-rows-[165px] lg:auto-rows-[185px] grid-flow-row-dense">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 md:auto-rows-[minmax(170px,auto)] lg:auto-rows-[185px] grid-flow-row-dense">
           {amenities.map(({ title, desc, icon: Icon, variant, img, span }) => {
             if (variant === 'image') {
               return (
                 <div
                   key={title}
-                  className={`group relative overflow-hidden bg-lt-onyx flex flex-col justify-end p-5 lg:p-7 ${span}`}
+                  className={`group relative overflow-hidden bg-lt-onyx flex flex-col justify-end p-5 lg:p-7 min-h-[200px] md:min-h-0 ${span}`}
                 >
                   {img && (
                     <img
