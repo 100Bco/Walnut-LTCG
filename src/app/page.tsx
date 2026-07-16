@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
+import Tenants from '@/components/Tenants';
 import Suites from '@/components/Suites';
 import Amenities from '@/components/Amenities';
 import Terms from '@/components/Terms';
@@ -28,6 +29,7 @@ export default function Home() {
       <main>
         <Hero />
         <Stats />
+        <Tenants />
         <Suites />
         <Amenities />
         <Terms />
